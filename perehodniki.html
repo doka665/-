@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ссылки — Doka</title>
+  <style>
+    :root {
+      --card: #0b1020cc;
+      --accent: linear-gradient(90deg, rgba(134,60,255,1) 0%, rgba(56,178,255,1) 100%);
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color: #eaf2ff;
+      background: #000;
+    }
+
+    /* 🔮 Переливающийся фиолетово-синий фон */
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: linear-gradient(270deg, #8b5cf6, #3b82f6, #6b21a8, #1e3a8a);
+      background-size: 800% 800%;
+      animation: gradientShift 16s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ✨ Мягкое свечение поверх */
+    .shimmer {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.05), transparent 70%),
+                  radial-gradient(circle at 70% 70%, rgba(255,255,255,0.05), transparent 70%);
+      mix-blend-mode: overlay;
+      animation: shimmerMove 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes shimmerMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(20px, -20px); }
+    }
+
+    .wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 520px;
+      border-radius: 20px;
+      padding: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      box-shadow: 0 10px 40px rgba(2,6,23,0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 20px;
+      box-shadow: 0 6px 18px rgba(79,26,157,0.25);
+    }
+
+    .title h1 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: 0.2px;
+    }
+
+    .title p {
+      margin: 2px 0 0;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    .tabs {
+      display: flex;
+      margin-top: 18px;
+      border-radius: 12px;
+      gap: 8px;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 10px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: center;
+      font-weight: 600;
+      user-select: none;
+      border: 1px solid transparent;
+      transition: all .25s;
+    }
+
+    .tab:hover {
+      transform: translateY(-3px);
+    }
+
+    .tab.active {
+      background: linear-gradient(90deg, rgba(134,60,255,0.18), rgba(56,178,255,0.14));
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 6px 20px rgba(72,29,130,0.12);
+    }
+
+    .content {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .big-btn {
+      width: 100%;
+      padding: 18px;
+      border-radius: 14px;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.04);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .big-btn:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(2,6,23,0.5);
+    }
+
+    .hint {
+      font-size: 13px;
+      opacity: 0.85;
+      text-align: center;
+    }
+
+    .icon {
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    footer {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 12px;
+      opacity: 0.6;
+    }
+
+    @media (max-width: 520px) {
+      .card { padding: 18px; }
+      .avatar { width: 54px; height: 54px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="shimmer"></div>
+
+  <div class="wrap">
+    <div class="card">
+      <div class="header">
+        <div class="avatar">D</div>
+        <div class="title">
+          <h1>Doka — переходник</h1>
+          <p>Нажми вкладку и следуй по ссылке</p>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <div class="tab active" data-id="tg">Telegram</div>
+        <div class="tab" data-id="yt">YouTube</div>
+        <div class="tab" data-id="tw">Twitch</div>
+      </div>
+
+      <div class="content">
+        <div id="tg" class="panel">
+          <div class="big-btn" data-href="https://t.me/filozov66">
+            <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M21 3L3 10.5L9 13.5L11 20L14 13.5L21 3Z" fill="currentColor"/></svg>
+            Перейти в Telegram
+          </div>
+          <div class="hint">Канал: <strong>@filozov66</strong></div>
+        </div>
+
+        <div id="yt" class="panel" style="display:none">
+          <div class="big-btn" data-href="https://www.youtube.com/@doka696">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M10 8.5v7l6-3.5-6-3.5z" fill="currentColor"/></svg>
+            Перейти на YouTube
+          </div>
+          <div class="hint">Канал: <strong>@doka696</strong></div>
+        </div>
+
+        <div id="tw" class="panel" style="display:none">
+          <div class="big-btn" data-href="https://www.twitch.tv/doka66_">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M4 2v14l3-3h3l2-2h4V2H4z" fill="currentColor"/></svg>
+            Перейти на Twitch
+          </div>
+          <div class="hint">Стримы: <strong>doka66_</strong></div>
+        </div>
+      </div>
+
+      <footer>Сделано в фиолето-синих цветах ✨</footer>
+    </div>
+  </div>
+
+  <!-- ✅ Скрипт теперь после всей разметки -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const tabs = document.querySelectorAll('.tab');
+      const panels = document.querySelectorAll('.panel');
+
+      tabs.forEach(tab => tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        panels.forEach(p => p.style.display = 'none');
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.id).style.display = 'block';
+      }));
+
+      document.querySelectorAll('.big-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const link = btn.dataset.href;
+          if (link) window.open(link, '_blank');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
